@@ -1,0 +1,22 @@
+<h1>Task Manager</h1>
+
+<%= link_to 'Create New Task', new_task_path %>
+
+<h3>Filter</h3>
+<%= link_to 'All', tasks_path %> |
+<%= link_to 'Incomplete', tasks_path(filter: "incomplete") %> |
+<%= link_to 'Complete', tasks_path(filter: "complete") %>
+
+<h3>Tasks</h3>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <strong>Title:</strong> <%= task.title %> 
+      (<%= task.completed ? 'Completed' : 'Incomplete' %>)
+      - Due on: <%= task.due_date %>
+      <%= link_to 'Edit', edit_task_path(task) %> |
+      <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %> |
+     <%= button_to (task.completed ? 'Mark Incomplete' : 'Mark Complete'), toggle_complete_task_path(task), method: :patch %>
+    </li>
+  <% end %>
+</ul>

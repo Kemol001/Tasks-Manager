@@ -1,0 +1,10 @@
+<!-- app/views/tasks/show.html.erb -->
+<h1><%= @task.title %></h1>
+
+<p><strong>Description:</strong> <%= @task.description %></p>
+<p><strong>Due Date:</strong> <%= @task.due_date.strftime("%B %d, %Y") %></p>
+<p><strong>Status:</strong> <%= @task.completed ? 'Completed' : 'Incomplete' %></p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Delete', task_path(@task), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back to Task List', tasks_path %>
